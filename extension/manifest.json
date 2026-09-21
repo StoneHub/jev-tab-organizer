@@ -1,0 +1,11 @@
+{
+  "manifest_version": 3,
+  "name": "Jev Tab Organizer",
+  "version": "0.1.0",
+  "description": "Turn tab sprawl into calm, reviewable groups. Private local sorting with optional Jev assistance.",
+  "minimum_chrome_version": "116",
+  "permissions": ["tabs", "tabGroups", "storage"],
+  "optional_host_permissions": ["https://*/*", "http://localhost/*", "http://127.0.0.1/*"],
+  "background": {"service_worker": "background.js"},
+  "action": {"default_title": "Organize this window"}
+}
