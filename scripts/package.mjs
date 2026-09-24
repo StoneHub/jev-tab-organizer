@@ -1,10 +1,12 @@
-import {mkdir, readdir, readFile, copyFile} from 'node:fs/promises';
+import {mkdir, readdir, readFile, copyFile, rm} from 'node:fs/promises';
 import {spawnSync} from 'node:child_process';
 const {version} = JSON.parse(await readFile('package.json','utf8'));
 const folder = `dist/jev-tab-organizer-${version}`;
+await rm(folder, {recursive:true, force:true});
 await mkdir(folder, {recursive:true});
 for (const file of await readdir('extension')) await copyFile(`extension/${file}`,`${folder}/${file}`);
 const archive = `jev-tab-organizer-${version}-unpacked.zip`;
+await rm(`dist/${archive}`, {force:true});
 const result = spawnSync('zip', ['-rq',archive,`jev-tab-organizer-${version}`], {cwd:'dist',stdio:'inherit'});
 if (result.status !== 0) process.exit(1);
 console.log(`dist/${archive}`);
