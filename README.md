@@ -79,3 +79,7 @@ Reviewed StoneHub's existing `webDevFeedbackExt`: retained its plain JavaScript 
 ## Prototype limits / next steps
 
 Local categories are intentionally simple keyword rules, not semantic AI. No continuous background organization, undo order restoration, saved workspaces, Firefox support, Chrome Web Store distribution or production gateway deployment yet. Test live Jev with consented example tabs, measure classification quality and latency, then improve taxonomy and confidence policy from actual results.
+
+## Cloud task preparation
+
+See [cloud work](docs/CLOUD-WORK.md) for supported runner checks, task boundaries and local acceptance gates.
