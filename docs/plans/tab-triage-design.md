@@ -137,11 +137,11 @@ This runner loaded the extension in headless Chromium 141 and ran the existing s
 - desktop Chrome itself, rather than Playwright's Chromium
 - the whole Tidy flow, and `storage.local` persistence when the unpacked extension is reloaded or updated
 
-## Decisions for the owner
+## Decisions taken (override in review)
 
-- **D1.** Thresholds: recent = 1 hour, stale reference = 3 days. Should a favorite that is open but unused be suggested for closing (case 6)?
-- **D2.** Raise `minimum_chrome_version` to 121 so recency is always known, or keep 116 and leave those tabs alone.
-- **D3.** Saved-links storage: `storage.local` plus JSON export (recommended), or bookmarks with the new permission.
-- **D4.** Recovery: Jev's own address list (recommended), or `chrome.sessions` with a new permission for Chrome's own restore. Also, how long to keep recovery batches.
-- **D5.** Should "Tidy up" become the default view once slice 3 ships?
-- **D6.** Jot or Jev context: defer both until the local rules have been dogfooded (recommended)?
+- **D1.** Recent means opened within 1 hour, and a reference goes stale after 3 days, both as constants in `triage.js`. An open favorite may be suggested for closing (case 6), since it is one click away in Quick return.
+- **D2.** Keep `minimum_chrome_version` at 116. A tab without `lastAccessed` is left alone (rule 4). No manifest change.
+- **D3.** `storage.local` with one key per record, plus a JSON export in slice 2. No bookmarks permission.
+- **D4.** Jev keeps its own recovery list, the last 5 batches or 7 days, whichever is shorter. No `sessions` permission.
+- **D5.** Topic grouping stays the default view. Revisit after slice 3 has been used.
+- **D6.** Jot and Jev context are deferred until the local rules have been dogfooded.
