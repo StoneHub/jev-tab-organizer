@@ -42,8 +42,26 @@ try {
   assert.equal((await worker.evaluate(id => chrome.tabs.get(id),setup.ids[0])).groupId,-1);
   await page.locator('#undo').click();
   await page.waitForFunction(() => document.getElementById('status').textContent.startsWith('Last batch ungrouped.'));
+  // Tidy preview: every tab gets a reason, a keep rule survives a reload, and the preview changes no tab.
+  const snapshot = () => worker.evaluate(async () => (await chrome.tabs.query({})).map(tab => [tab.id,tab.url,tab.groupId,tab.pinned,tab.index].join('|')).sort());
+  const before = await snapshot();
+  await page.locator('#view-tidy').click();
+  await page.waitForFunction(() => document.querySelectorAll('#tidy .tidy-row').length === 5);
+  assert.ok((await page.locator('#tidy .reason').allTextContents()).every(text => / · \S/.test(text)));
+  assert.match(await page.locator('#tidy-left-alone').textContent(), /^Left alone: \d+ /);
+  await page.locator('#tidy details summary').click();
+  await page.locator('#tidy .tidy-row',{hasText:'docs.example.com'}).getByRole('button',{name:'Always keep this site'}).click();
+  await page.waitForFunction(() => document.getElementById('rules').textContent.includes('docs.example.com'));
+  await page.reload();
+  await page.locator('#view-tidy').click();
+  await page.waitForFunction(() => document.getElementById('rules').textContent.includes('docs.example.com'));
+  assert.match(await page.locator('#tidy .tidy-row',{hasText:'docs.example.com'}).locator('.reason').textContent(), /Your rule: always keep docs\.example\.com/);
+  await page.getByRole('button',{name:'Clear all rules'}).click();
+  await page.waitForFunction(() => document.getElementById('rules').textContent.includes('No rules yet'));
+  assert.deepEqual(await snapshot(), before);
+  await page.locator('#view-topic').click();
   await mkdir('dist',{recursive:true}); await page.screenshot({path:'dist/browser-smoke.png',fullPage:true});
   assert.deepEqual(errors,[]);
-  console.log('PASS: real MV3 load, five-tab grouping, protected tabs/groups, session ungroup, stale navigation skip, zero dashboard errors.');
+  console.log('PASS: real MV3 load, five-tab grouping, protected tabs/groups, session ungroup, stale navigation skip, Tidy preview with reasons and a persisted keep rule and no tab changes, zero dashboard errors.');
   console.log(`Temporary isolated browser profile: ${profile}`);
 } finally { await context.close(); }

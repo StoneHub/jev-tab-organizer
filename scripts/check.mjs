@@ -6,5 +6,5 @@ for (const file of await readdir('extension')) {
   if (file.endsWith('.js')) { const result = spawnSync(process.execPath, ['--check',`extension/${file}`], {stdio:'inherit'}); if (result.status !== 0) process.exit(1); }
 }
 await readFile(`extension/${manifest.background.service_worker}`);
-for (const asset of ['dashboard.js','dashboard.html','core.js','styles.css']) await readFile(`extension/${asset}`);
+for (const asset of ['dashboard.js','dashboard.html','core.js','triage.js','rules.js','styles.css']) await readFile(`extension/${asset}`);
 console.log('MV3 manifest, required assets and extension JavaScript syntax verified.');
