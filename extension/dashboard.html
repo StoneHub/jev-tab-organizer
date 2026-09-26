@@ -3,9 +3,12 @@
 <body><main>
   <header><div class="brand"><span class="logo">↗</span> JEV / TAB ORGANIZER <span class="pill">PREVIEW 0.1</span></div><span class="local">● Local by default</span></header>
   <section class="hero"><p class="eyebrow">LESS TAB SPRAWL. MORE HEADSPACE.</p><h1>A little order.<br>A lot more focus.</h1><p class="intro">Bring related tabs together. Review the plan, adjust the groups, and get back to what you opened them for.</p></section>
+  <nav class="views" aria-label="View"><button id="view-topic" aria-pressed="true">Group by topic</button><button id="view-tidy" aria-pressed="false">Tidy up</button></nav>
   <section class="toolbar" aria-label="Actions"><div><strong id="count">Finding your tabs…</strong><p>Current window · pinned, private and existing groups stay untouched</p></div><div class="buttons"><button id="refresh">Refresh tabs</button><button id="apply" class="primary" disabled>Create groups</button></div></section>
   <p id="status" role="status" aria-live="polite">Preparing a local preview. Nothing has moved.</p>
   <section id="groups" class="groups" aria-label="Proposed groups"></section>
+  <section id="tidy" class="tidy" aria-label="Tidy suggestions" hidden><p id="tidy-left-alone" class="fine"></p><div id="tidy-sections" class="groups"></div>
+    <div class="rules"><h2>Your keep rules</h2><p class="fine">Tabs on these sites are always kept. Rules stay on this device and are never sent to Jev.</p><ul id="rules"></ul><button id="clear-rules">Clear all rules</button></div></section>
   <section class="gateway"><div><p class="eyebrow">OPTIONAL / SEMANTIC SORTING</p><h2>Let Jev connect the dots.</h2><p>Local sorting needs no account. Jev can suggest smarter categories through a gateway you control.</p></div>
     <details><summary>Set up Jev assistance</summary><label for="gateway">Gateway URL</label><input id="gateway" type="url" placeholder="http://127.0.0.1:4318/classify" autocomplete="off"><p class="fine">Only checked tabs’ displayed titles and domains are sent. Titles can contain personal information. No full URLs or page contents. The gateway may forward these fields to TypeSafe.</p><label class="consent"><input id="consent" type="checkbox"> I approve sending this selection’s titles and domains.</label><button id="suggest">Send selection to Jev</button><p class="fine">Browser access is requested only for your chosen gateway. Suggestions are a preview, never an automatic action.</p></details>
   </section>

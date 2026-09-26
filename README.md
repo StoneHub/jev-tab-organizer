@@ -18,6 +18,7 @@ From source, select the repository's **extension/** folder instead. No npm insta
 - Uncheck anything you want left alone, or change its proposed group with the dropdown.
 - Click **Create groups**. Chrome may reorder tabs to put group members together.
 - **Ungroup last batch** removes grouping from tabs still in that batch's groups; it does **not** restore their previous order. Only the most recent batch is retained, until the browser session ends.
+- **Tidy up** shows which tabs look finished (Close), which to keep for later (Save and close) and which to leave open, with the reason for each. You can change any decision or choose **Always keep this site**, and inspect, retire or clear those rules. This version only suggests: it closes and saves nothing. See [the design](docs/plans/tab-triage-design.md) once #5 merges.
 - Refresh to get a fresh local plan. Pinned tabs, private/incognito tabs, existing groups and non-web pages are always excluded. Tabs whose URL/title/window/group status changed since preview are skipped.
 
 No tabs are closed, no groups are collapsed, and nothing runs on a timer. The extension automatically chooses categories, but applying the plan is always user-triggered. Multiple dashboard tabs can view the same browser; use one at a time.
