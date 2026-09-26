@@ -1,6 +1,6 @@
 # Cloud work: Jev Tab Organizer
 
-The next product direction is reviewable tab triage, saved links and personal context. Read [the brief](TAB-TRIAGE.md). This repository is the intended base: its history contains the original MV3 organizer, release proof and archive fix, rather than an abandoned research page. The existing product groups by topic; the new behavior is proposed, not implemented.
+The next product direction is reviewable tab triage, saved links and personal context. Read [the brief](TAB-TRIAGE.md). This repository is the intended base: its history contains the original MV3 organizer, release proof and archive fix, rather than an abandoned research page. The product now has topic grouping and a read-only Tidy preview with explicit keep rules (PRs #5 and #6). Saved links and tab closing remain unimplemented. The next portable task is [saved links](cloud-tasks/saved-links.md).
 
 ## Portable baseline
 
@@ -13,7 +13,7 @@ npm run package
 git diff --check
 ```
 
-These passed locally: 10 tests, source/manifest checks and packaging. Hosted Linux and real browser behavior are not yet verified. Package output under `dist/` is an artifact, not a published release.
+These passed locally: 10 tests, source/manifest checks and packaging. PR #6 passed 15 tests plus source/package checks on hosted Linux and the Mac. An isolated Chromium MV3 smoke passed on both hosts, including preview reasons, rule persistence and unchanged tabs. User-profile Edge installation remains a separate manual gate. Package output under `dist/` is an artifact, not a published release.
 
 Read `README.md`, `package.json`, `extension/manifest.json`, `extension/core.js`, `test/core.test.mjs` and `test/package.test.mjs` first. For gateway work, add `server/proxy.mjs`. Tests use fixtures; no TypeSafe credentials, real tab metadata or live provider calls are needed. Preserve current permissions and explicit preview/apply behavior unless the approved feature specifically changes them.
 

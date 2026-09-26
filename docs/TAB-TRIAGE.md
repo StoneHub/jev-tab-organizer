@@ -1,6 +1,6 @@
 # Tab triage and a useful saved-link list
 
-Status: product direction captured 2026-09-25; implementation has not started. First cloud task is a source-backed design, followed by one selected implementation slice.
+Status: design and slice 1 merged in PRs #5 and #6 on 2026-09-25. Topic grouping, Tidy preview and explicit keep rules exist. Saved links and actual closing remain pending. Next task: [saved links](cloud-tasks/saved-links.md).
 
 ## Desired experience
 

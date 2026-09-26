@@ -1,6 +1,6 @@
 # Tab triage, saved links and personal context: design
 
-Status: design for [#2](https://github.com/StoneHub/jev-tab-organizer/issues/2), [#3](https://github.com/StoneHub/jev-tab-organizer/issues/3) and [#4](https://github.com/StoneHub/jev-tab-organizer/issues/4), written 2026-09-25 against `1121b0e`. Nothing here is implemented. The brief is [TAB-TRIAGE.md](../TAB-TRIAGE.md).
+Status: design for [#2](https://github.com/StoneHub/jev-tab-organizer/issues/2), [#3](https://github.com/StoneHub/jev-tab-organizer/issues/3) and [#4](https://github.com/StoneHub/jev-tab-organizer/issues/4), written 2026-09-25 against `1121b0e`. Update: this design and slice 1 were merged in PRs #5 and #6; the source analysis below describes the original baseline. Saved links and save-and-close are still pending. The brief is [TAB-TRIAGE.md](../TAB-TRIAGE.md).
 
 ## Current flow (source)
 
